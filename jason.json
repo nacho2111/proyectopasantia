@@ -1,0 +1,23 @@
+{
+  "base": "USD",
+  "lastUpdate": "2026-08-28",
+  "currencies": [
+    { "code": "USD", "name": "Dólar Estadounidense", "symbol": "$", "flag": "🇺🇸", "rate": 1.0 },
+    { "code": "EUR", "name": "Euro", "symbol": "€", "flag": "🇪🇺", "rate": 0.92 },
+    { "code": "ARS", "name": "Peso Argentino", "symbol": "$", "flag": "🇦🇷", "rate": 1285.50 },
+    { "code": "BRL", "name": "Real Brasileño", "symbol": "R$", "flag": "🇧🇷", "rate": 5.65 },
+    { "code": "GBP", "name": "Libra Esterlina", "symbol": "£", "flag": "🇬🇧", "rate": 0.78 },
+    { "code": "JPY", "name": "Yen Japonés", "symbol": "¥", "flag": "🇯🇵", "rate": 154.20 },
+    { "code": "MXN", "name": "Peso Mexicano", "symbol": "$", "flag": "🇲🇽", "rate": 18.90 },
+    { "code": "CLP", "name": "Peso Chileno", "symbol": "$", "flag": "🇨🇱", "rate": 935.00 },
+    { "code": "COP", "name": "Peso Colombiano", "symbol": "$", "flag": "🇨🇴", "rate": 4050.00 },
+    { "code": "PEN", "name": "Sol Peruano", "symbol": "S/", "flag": "🇵🇪", "rate": 3.75 },
+    { "code": "UYU", "name": "Peso Uruguayo", "symbol": "$U", "flag": "🇺🇾", "rate": 40.20 },
+    { "code": "CAD", "name": "Dólar Canadiense", "symbol": "CA$", "flag": "🇨🇦", "rate": 1.37 },
+    { "code": "AUD", "name": "Dólar Australiano", "symbol": "AU$", "flag": "🇦🇺", "rate": 1.52 },
+    { "code": "CHF", "name": "Franco Suizo", "symbol": "CHF", "flag": "🇨🇭", "rate": 0.88 },
+    { "code": "CNY", "name": "Yuan Chino", "symbol": "¥", "flag": "🇨🇳", "rate": 7.23 },
+    { "code": "INR", "name": "Rupia India", "symbol": "₹", "flag": "🇮🇳", "rate": 83.90 },
+    { "code": "KRW", "name": "Won Surcoreano", "symbol": "₩", "flag": "🇰🇷", "rate": 1380.00 }
+  ]
+}

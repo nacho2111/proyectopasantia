@@ -1,0 +1,269 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  transition: background-color 0.2s ease;
+}
+
+.contenedor-principal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.img-costado {
+  display: none;
+  width: 180px;
+  max-height: 250px;
+  object-fit: contain;
+}
+
+.contenedor {
+  width: 100%;
+  max-width: 440px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 10px;
+}
+
+.oculto {
+  display: none;
+}
+
+h1 {
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+h2 {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.descripcion {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 16px;
+  opacity: 0.85;
+}
+
+/* Menu */
+.menu-botones {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btn-menu {
+  padding: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.btn-menu:hover {
+  opacity: 0.9;
+}
+
+/* Boton volver */
+.btn-volver {
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+
+.btn-volver:hover {
+  text-decoration: underline;
+}
+
+/* Formulario */
+.campo {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 15px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  outline: none;
+  background-color: #fff;
+  color: #222;
+}
+
+input:focus,
+select:focus {
+  border-color: #333;
+}
+
+.fila-campos {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.fila-campos .campo {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.btn-intercambiar {
+  background-color: #fff;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  width: 42px;
+  height: 40px;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-intercambiar:hover {
+  background-color: #f0f0f0;
+}
+
+.btn-principal {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.btn-principal:hover {
+  opacity: 0.9;
+}
+
+/* Resultado */
+.resultado {
+  margin-top: 20px;
+  padding: 10px;
+  text-align: center;
+}
+
+.texto-resultado {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.tasa-cambio {
+  display: block;
+  margin-top: 6px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* TEMA INICIO (Verde) */
+body.tema-inicio {
+  background-color: #d8eedb;
+  color: #1b4332;
+}
+
+body.tema-inicio h1 {
+  color: #1b4332;
+}
+
+body.tema-inicio .btn-menu {
+  background-color: #2d6a4f;
+}
+
+/*UNIDADES */
+body.tema-unidades {
+  background-color: #fde2e4;
+  color: #5c0d21;
+}
+
+body.tema-unidades .img-unidades {
+  display: block;
+}
+
+body.tema-unidades h2,
+body.tema-unidades label,
+body.tema-unidades .btn-volver,
+body.tema-unidades .texto-resultado {
+  color: #800f2f;
+}
+
+body.tema-unidades .btn-principal {
+  background-color: #c9184a;
+}
+
+/*MONEDAS */
+body.tema-monedas {
+  background-color: #dbeafe;
+  color: #03045e;
+}
+
+body.tema-monedas .img-monedas {
+  display: block;
+}
+
+body.tema-monedas h2,
+body.tema-monedas label,
+body.tema-monedas .btn-volver,
+body.tema-monedas .texto-resultado {
+  color: #03045e;
+}
+
+body.tema-monedas .btn-principal {
+  background-color: #0077b6;
+}
+
+
+@media (max-width: 850px) {
+  .img-costado {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .fila-campos {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-intercambiar {
+    width: 100%;
+    height: 38px;
+    margin: 4px 0;
+  }
+}

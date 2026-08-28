@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conversor</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body class="tema-inicio">
+
+  <div class="contenedor-principal">
+    <img src="todalaplata.jpg" class="img-costado img-monedas img-izquierda" alt="Plata">
+    <img src="poke.jpeg" class="img-costado img-unidades img-izquierda" alt="Poke">
+
+    <main class="contenedor">
+
+
+      <section id="pantallaInicio">
+        <h1>Conversor</h1>
+        <p class="descripcion">Selecciona qué tipo de conversor deseas utilizar:</p>
+
+        <div class="menu-botones">
+          <button type="button" id="btnIrUnidades" class="btn-menu">
+            Conversor de Unidades
+          </button>
+          <button type="button" id="btnIrMonedas" class="btn-menu">
+            Conversor de Monedas
+          </button>
+        </div>
+      </section>
+
+
+      <section id="vistaUnidades" class="oculto">
+        <button type="button" class="btn-volver" id="btnVolverUnidades">← Volver al inicio</button>
+
+        <h2>Conversor de Unidades</h2>
+
+        <div class="campo">
+          <label for="tipoUnidad">Tipo de medida:</label>
+          <select id="tipoUnidad">
+            <option value="longitud">Longitud (km, m, cm, mm)</option>
+            <option value="peso">Peso / Masa (kg, g, mg, lb)</option>
+            <option value="capacidad">Capacidad / Volumen (l, ml)</option>
+            <option value="temperatura">Temperatura (°C, °F, K)</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="montoUnidad">Cantidad:</label>
+          <input type="number" id="montoUnidad" value="1" step="any" placeholder="0">
+        </div>
+
+        <div class="fila-campos">
+          <div class="campo">
+            <label for="unidadOrigen">De:</label>
+            <select id="unidadOrigen"></select>
+          </div>
+
+          <button type="button" id="btnCambiarUnidad" class="btn-intercambiar" title="Invertir unidades">⇄</button>
+
+          <div class="campo">
+            <label for="unidadDestino">A:</label>
+            <select id="unidadDestino"></select>
+          </div>
+        </div>
+
+        <button type="button" id="btnConvertirUnidades" class="btn-principal">Convertir</button>
+
+        <div class="resultado">
+          <p class="texto-resultado" id="resultadoUnidades">-</p>
+        </div>
+      </section>
+
+
+      <section id="vistaMonedas" class="oculto">
+        <button type="button" class="btn-volver" id="btnVolverMonedas">← Volver al inicio</button>
+
+        <h2>Conversor de Monedas</h2>
+
+        <div class="campo">
+          <label for="montoMoneda">Monto a convertir:</label>
+          <input type="number" id="montoMoneda" value="100" min="0" step="any" placeholder="0.00">
+        </div>
+
+        <div class="fila-campos">
+          <div class="campo">
+            <label for="monedaOrigen">De:</label>
+            <select id="monedaOrigen"></select>
+          </div>
+
+          <button type="button" id="btnCambiarMoneda" class="btn-intercambiar" title="Invertir monedas">⇄</button>
+
+          <div class="campo">
+            <label for="monedaDestino">A:</label>
+            <select id="monedaDestino"></select>
+          </div>
+        </div>
+
+        <button type="button" id="btnConvertirMonedas" class="btn-principal">Convertir</button>
+
+        <div class="resultado">
+          <p class="texto-resultado" id="resultadoMonedas">-</p>
+          <small class="tasa-cambio" id="tasaMonedas">-</small>
+        </div>
+      </section>
+
+    </main>
+
+    <img src="todalaplata2.jpg" class="img-costado img-monedas img-derecha" alt="Plata">
+    <img src="pesin.png" class="img-costado img-unidades img-derecha" alt="Pesin">
+  </div>
+
+  <script src="java.js"></script>
+</body>
+
+</html>
