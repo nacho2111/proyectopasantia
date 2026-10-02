@@ -3,13 +3,13 @@ pagina web que convierte unidades de medida y monedas. Hecho con HTML, CSS y Jav
 Funcionalidades
 
 *Conversor de Unidades*:
-Longitud (km, m, cm, mm).
+Longitud (km, m, cm, mm, millas, yardas, pies).
 Peso (kg, g, mg, lb).
 Capacidad (l, ml).
 Temperatura (°C, °F, K).
 *Conversor de Monedas*
 Consulta los valores en tiempo real usando la API pública de open.er-api.com.
-Si no hay internet o falla la red, usa como respaldo los datos de jason.json o una lista interna.
+Si no hay internet o falla la red, usa como respaldo los datos de jason.json.
 *Botón para invertir los valores origen y destino (⇄)*.
 *Cálculo automático al escribir o cambiar los selectores.*
 *Diseño adaptable para celular y computadora.*

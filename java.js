@@ -31,6 +31,7 @@ const tasaMonedas = document.getElementById("tasaMonedas");
 let monedas = [];
 
 // Unidades
+// el factor es cuanto vale cada una en metros / gramos / litros
 const unidades = {
   longitud: {
     nombre: "Longitud",
@@ -38,7 +39,11 @@ const unidades = {
       { id: "km", nombre: "Kilómetros (km)", factor: 1000 },
       { id: "m", nombre: "Metros (m)", factor: 1 },
       { id: "cm", nombre: "Centímetros (cm)", factor: 0.01 },
-      { id: "mm", nombre: "Milímetros (mm)", factor: 0.001 }
+      { id: "mm", nombre: "Milímetros (mm)", factor: 0.001 },
+      // las de los yanquis
+      { id: "mi", nombre: "Millas (mi)", factor: 1609.344 },
+      { id: "yd", nombre: "Yardas (yd)", factor: 0.9144 },
+      { id: "ft", nombre: "Pies (ft)", factor: 0.3048 }
     ]
   },
   peso: {
@@ -47,7 +52,7 @@ const unidades = {
       { id: "kg", nombre: "Kilogramos (kg)", factor: 1000 },
       { id: "g", nombre: "Gramos (g)", factor: 1 },
       { id: "mg", nombre: "Miligramos (mg)", factor: 0.001 },
-      { id: "lb", nombre: "Libras (lb)", factor: 453.592 }
+      { id: "lb", nombre: "Libras (lb)", factor: 453.59237 } // 1 libra = 453 g y pico
     ]
   },
   capacidad: {
@@ -57,6 +62,7 @@ const unidades = {
       { id: "ml", nombre: "Mililitros (ml)", factor: 0.001 }
     ]
   },
+  // estas no tienen factor, se calculan aparte con formula
   temperatura: {
     nombre: "Temperatura",
     lista: [
@@ -68,6 +74,7 @@ const unidades = {
 };
 
 // Navegacion
+// cada funcion muestra una pantalla y esconde las otras
 
 function mostrarInicio() {
   document.body.className = "tema-inicio";
@@ -95,10 +102,12 @@ function mostrarMonedas() {
 
 // Conversor unidades
 
+// llena los dos selects segun el tipo de medida que elegiste
 function actualizarOpcionesUnidades() {
   const categoria = tipoUnidad.value;
   const lista = unidades[categoria].lista;
 
+  // borro lo que habia antes
   unidadOrigen.innerHTML = "";
   unidadDestino.innerHTML = "";
 
@@ -115,12 +124,14 @@ function actualizarOpcionesUnidades() {
     unidadDestino.appendChild(opc2);
   });
 
+  // para que no arranquen las dos iguales
   unidadOrigen.selectedIndex = 0;
   unidadDestino.selectedIndex = 1;
 }
 
 function convertirTemperatura(cantidad, de, a) {
   if (de === a) return cantidad;
+  // primero paso todo a celsius y de ahi a lo que pida
   let celsius = cantidad;
   if (de === "°F") {
     celsius = (cantidad - 32) * (5 / 9);
@@ -137,6 +148,7 @@ function convertirTemperatura(cantidad, de, a) {
 function convertirUnidades() {
   const cantidad = parseFloat(montoUnidad.value);
 
+  // si no pusieron un numero no sigo
   if (isNaN(cantidad)) {
     resultadoUnidades.textContent = "Ingresa una cantidad válida";
     return;
@@ -154,15 +166,18 @@ function convertirUnidades() {
   if (categoria === "temperatura") {
     total = convertirTemperatura(cantidad, uOrigen.id, uDestino.id);
   } else {
+    // lo paso a la unidad base (m, g o l) y despues a la de destino
     const valorBase = cantidad * uOrigen.factor;
     total = valorBase / uDestino.factor;
   }
 
+  // si tiene decimales lo corto en 4 asi no queda un numero larguisimo
   const totalFormateado = total % 1 === 0 ? total.toString() : parseFloat(total.toFixed(4)).toString();
 
   resultadoUnidades.textContent = `${cantidad} ${uOrigen.id} = ${totalFormateado} ${uDestino.id}`;
 }
 
+// da vuelta el "de" y el "a"
 function intercambiarUnidades() {
   const temporal = unidadOrigen.value;
   unidadOrigen.value = unidadDestino.value;
@@ -172,27 +187,6 @@ function intercambiarUnidades() {
 
 // Conversor de Monedas
 
-// Monedas predeterminada
-const monedasFallback = [
-  { code: "USD", name: "Dólar Estadounidense", symbol: "$", flag: "🇺🇸", rate: 1.0 },
-  { code: "EUR", name: "Euro", symbol: "€", flag: "🇪🇺", rate: 0.92 },
-  { code: "ARS", name: "Peso Argentino", symbol: "$", flag: "🇦🇷", rate: 1285.50 },
-  { code: "BRL", name: "Real Brasileño", symbol: "R$", flag: "🇧🇷", rate: 5.65 },
-  { code: "GBP", name: "Libra Esterlina", symbol: "£", flag: "🇬🇧", rate: 0.78 },
-  { code: "JPY", name: "Yen Japonés", symbol: "¥", flag: "🇯🇵", rate: 154.20 },
-  { code: "MXN", name: "Peso Mexicano", symbol: "$", flag: "🇲🇽", rate: 18.90 },
-  { code: "CLP", name: "Peso Chileno", symbol: "$", flag: "🇨🇱", rate: 935.00 },
-  { code: "COP", name: "Peso Colombiano", symbol: "$", flag: "🇨🇴", rate: 4050.00 },
-  { code: "PEN", name: "Sol Peruano", symbol: "S/", "flag": "🇵🇪", rate: 3.75 },
-  { code: "UYU", name: "Peso Uruguayo", symbol: "$U", flag: "🇺🇾", rate: 40.20 },
-  { code: "CAD", name: "Dólar Canadiense", symbol: "CA$", flag: "🇨🇦", rate: 1.37 },
-  { code: "AUD", name: "Dólar Australiano", symbol: "AU$", flag: "🇦🇺", rate: 1.52 },
-  { code: "CHF", name: "Franco Suizo", symbol: "CHF", flag: "🇨🇭", rate: 0.88 },
-  { code: "CNY", name: "Yuan Chino", symbol: "¥", flag: "🇨🇳", rate: 7.23 },
-  { code: "INR", name: "Rupia India", symbol: "₹", flag: "🇮🇳", rate: 83.90 },
-  { code: "KRW", name: "Won Surcoreano", symbol: "₩", flag: "🇰🇷", rate: 1380.00 }
-];
-
 async function cargarMonedas() {
   // Cargar json
   try {
@@ -200,18 +194,22 @@ async function cargarMonedas() {
     const datosLocales = await respuestaLocal.json();
     if (datosLocales && datosLocales.currencies) {
       monedas = datosLocales.currencies;
-    } else {
-      monedas = [...monedasFallback];
     }
   } catch (error) {
     console.warn("No se pudo cargar jason.json local:", error);
-    monedas = [...monedasFallback];
+  }
+
+  // si no hay monedas no tiene sentido seguir
+  if (monedas.length === 0) {
+    resultadoMonedas.textContent = "No se pudieron cargar las monedas";
+    return;
   }
 
   // Llenar selects
   llenarSelectsMonedas();
 
   // Obtener valores
+  // si anda la api piso los valores con los de hoy
   try {
     const respuestaApi = await fetch("https://open.er-api.com/v6/latest/USD");
     const datosApi = await respuestaApi.json();
@@ -251,6 +249,7 @@ function llenarSelectsMonedas() {
     monedaDestino.appendChild(opc2);
   });
 
+  // arranca en dolar a euro
   monedaOrigen.value = "USD";
   monedaDestino.value = "EUR";
 }
@@ -269,6 +268,7 @@ function convertirMonedas() {
 
   if (!origen || !destino) return;
 
+  // todas las tasas estan en dolares, asi que paso a dolar y de ahi a la otra
   const montoEnDolares = cantidad / origen.rate;
   const total = montoEnDolares * destino.rate;
   const tasa = destino.rate / origen.rate;
@@ -310,4 +310,5 @@ montoMoneda.addEventListener("input", convertirMonedas);
 monedaOrigen.addEventListener("change", convertirMonedas);
 monedaDestino.addEventListener("change", convertirMonedas);
 
+// apenas abre la pagina ya carga las monedas
 cargarMonedas();
