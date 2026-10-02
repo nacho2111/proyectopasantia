@@ -33,6 +33,7 @@ body {
 .contenedor {
   width: 100%;
   max-width: 440px;
+  margin: 0 auto;
   background: transparent;
   border: none;
   box-shadow: none;
@@ -40,7 +41,7 @@ body {
 }
 
 .oculto {
-  display: none;
+  display: none !important;
 }
 
 h1 {
@@ -86,16 +87,22 @@ h2 {
 
 /* Imagen inicio */
 .contenedor-img-inicio {
-  margin-top: 25px;
+  margin-top: 24px;
+  width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .img-inicio {
+  display: block;
+  margin: 0 auto;
   width: 100%;
-  max-width: 320px;
-  border-radius: 8px;
-  object-fit: cover;
+  max-width: 300px;
+  height: auto;
+  border-radius: 10px;
+  object-fit: contain;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
