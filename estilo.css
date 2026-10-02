@@ -84,6 +84,21 @@ h2 {
   opacity: 0.9;
 }
 
+/* Imagen inicio */
+.contenedor-img-inicio {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+.img-inicio {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
 /* Boton volver */
 .btn-volver {
   background: none;
