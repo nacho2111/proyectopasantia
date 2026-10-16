@@ -214,6 +214,40 @@ select:focus {
   opacity: 0.8;
 }
 
+.fuente-datos {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 5px 12px;
+  border-radius: 14px;
+  transition: all 0.2s ease;
+}
+
+.fuente-datos.estado-api {
+  background-color: #d1e7dd;
+  color: #0f5132;
+  border: 1px solid #badbcc;
+}
+
+.fuente-datos.estado-json {
+  background-color: #fff3cd;
+  color: #664d03;
+  border: 1px solid #ffecb5;
+}
+
+.fuente-datos.estado-cargando {
+  background-color: #e2e3e5;
+  color: #41464b;
+  border: 1px solid #d3d6d8;
+}
+
+.fuente-datos.estado-error {
+  background-color: #f8d7da;
+  color: #842029;
+  border: 1px solid #f5c2c7;
+}
+
 /* inicio */
 body.tema-inicio {
   background-color: #d8eedb;

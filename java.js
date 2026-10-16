@@ -26,6 +26,7 @@ const btnCambiarMoneda = document.getElementById("btnCambiarMoneda");
 const btnConvertirMonedas = document.getElementById("btnConvertirMonedas");
 const resultadoMonedas = document.getElementById("resultadoMonedas");
 const tasaMonedas = document.getElementById("tasaMonedas");
+const fuenteDatosMonedas = document.getElementById("fuenteDatosMonedas");
 
 // Lista de monedas
 let monedas = [];
@@ -188,7 +189,7 @@ function intercambiarUnidades() {
 // Conversor de Monedas
 
 async function cargarMonedas() {
-  // Cargar json
+  // Cargar json de respaldo
   try {
     const respuestaLocal = await fetch("jason.json");
     const datosLocales = await respuestaLocal.json();
@@ -196,20 +197,34 @@ async function cargarMonedas() {
       monedas = datosLocales.currencies;
     }
   } catch (error) {
-    console.warn("No se pudo cargar jason.json local:", error);
+    console.warn("No se pudo cargar jason.json:", error);
   }
 
-  // si no hay monedas no tiene sentido seguir
+  // Si no hay monedas (por ejemplo si se abrió localmente como file:// y el navegador bloqueó la lectura)
   if (monedas.length === 0) {
     resultadoMonedas.textContent = "No se pudieron cargar las monedas";
+    if (fuenteDatosMonedas) {
+      fuenteDatosMonedas.textContent = "Error al leer jason.json";
+      fuenteDatosMonedas.className = "fuente-datos estado-error";
+    }
     return;
   }
 
   // Llenar selects
   llenarSelectsMonedas();
 
-  // Obtener valores
-  // si anda la api piso los valores con los de hoy
+  // Estado inicial con el JSON de respaldo
+  if (fuenteDatosMonedas) {
+    fuenteDatosMonedas.textContent = "Usando el JSON de respaldo";
+    fuenteDatosMonedas.className = "fuente-datos estado-json";
+  }
+
+  // Recalcular si la vista de monedas está visible
+  if (!vistaMonedas.classList.contains("oculto")) {
+    convertirMonedas();
+  }
+
+  // Consultar la API para cotizaciones en vivo
   try {
     const respuestaApi = await fetch("https://open.er-api.com/v6/latest/USD");
     const datosApi = await respuestaApi.json();
@@ -221,14 +236,21 @@ async function cargarMonedas() {
         }
         return m;
       });
-      console.log("Cotizaciones actualizadas en vivo.");
-      // Recalcular si la vista está visible
+      console.log("Cotizaciones actualizadas con la API.");
+      if (fuenteDatosMonedas) {
+        fuenteDatosMonedas.textContent = "Usando la API";
+        fuenteDatosMonedas.className = "fuente-datos estado-api";
+      }
       if (!vistaMonedas.classList.contains("oculto")) {
         convertirMonedas();
       }
     }
   } catch (error) {
-    console.warn("Error al obtener tasas web:", error);
+    console.warn("No se pudo conectar a la API, se mantiene el JSON de respaldo:", error);
+    if (fuenteDatosMonedas) {
+      fuenteDatosMonedas.textContent = "Usando el JSON de respaldo";
+      fuenteDatosMonedas.className = "fuente-datos estado-json";
+    }
   }
 }
 
